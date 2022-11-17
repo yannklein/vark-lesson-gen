@@ -1,4 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
+
+ruby '3.1.2'
 
 gem "better_errors"
 gem "binding_of_caller"
