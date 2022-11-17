@@ -8,3 +8,5 @@ gem "sinatra-activerecord"
 gem "sinatra-contrib"
 gem "thin"
 gem "faker"
+
+gem 'pg'
