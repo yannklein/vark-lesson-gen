@@ -38,13 +38,15 @@
  ________     |                          /            \                         |
 |DB:     |    |              ___________\/_        ___\/______________          |
 |2. crea |    |             |              |      |                   |         |
-|3. migr |<---------------->|   5.Model    |      | 7. View(html,erb) |         |
+|3. migr |<---------------->|   5.Model    |      | 7. View(html.erb) |         |
 |        |    |             |______________|      |___________________|         |
 |4. seed |    |_________________________________________________________________|
 '--------' 
 ```
 
 ### Plan:
-[ ] As a user I can list all the restaurants
-[ ] As a user I can see one restaurant's details
-[ ] As a user I can add a restaurant
+
+- ✅ Rehearse OOP before/after ActiveRecord
+- 🔲 As a user I can list all the restaurants
+- 🔲 As a user I can see one restaurant's details
+- 🔲 As a user I can add a restaurant

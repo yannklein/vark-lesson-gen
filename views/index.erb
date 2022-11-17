@@ -1,14 +1,18 @@
-<!-- er + tab -->
-<div class="row">
-  <% @pokemons.each do |pokemon| %>
-    <!-- pe + tab -->
-    <div class="card m-3" style="width: 18rem;">
-      <img src="https://loremflickr.com/320/240/<%= pokemon.move.split.first %>" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= pokemon.name %></h5>
-        <p class="card-text"><%= pokemon.location %></p>
-        <a href="#" class="btn btn-primary"><%= pokemon.move %></a>
+<%# Embedded ruby that is displayed ( pe + tab) %>
+<%# Embedded ruby that is not displayed ( er + tab) %>
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <img src="<%= cocktail.photo_url %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= cocktail.name %></h5>
+          <p class="card-text"><%= cocktail.instructions %></p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

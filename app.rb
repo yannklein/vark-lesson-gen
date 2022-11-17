@@ -5,7 +5,11 @@ require "pry-byebug"
 require "better_errors"
 require_relative "config/application"
 
-get "/pokemons" do
-  @pokemons = Pokemon.all
+get "/" do
+  @cocktails = Cocktail.all
   erb :index
+end
+
+get "/yann" do
+  "yann's page"
 end
