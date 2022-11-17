@@ -1,0 +1,14 @@
+<!-- er + tab -->
+<div class="row">
+  <% @pokemons.each do |pokemon| %>
+    <!-- pe + tab -->
+    <div class="card m-3" style="width: 18rem;">
+      <img src="https://loremflickr.com/320/240/<%= pokemon.move.split.first %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= pokemon.name %></h5>
+        <p class="card-text"><%= pokemon.location %></p>
+        <a href="#" class="btn btn-primary"><%= pokemon.move %></a>
+      </div>
+    </div>
+  <% end %>
+</div>
