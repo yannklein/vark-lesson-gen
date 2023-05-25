@@ -1,26 +1,28 @@
 require "json"
 require "open-uri"
 
-url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+puts "Delete all the pokemons..."
+Pokemon.destroy_all
+puts "Deleted!"
 
-puts "Destroying legacy cocktails..."
-Cocktail.destroy_all
-puts "Done!"
-
-puts "Creating 10 new cocktails"
+puts "Create pokemons..."
 10.times do
-  cocktail_serialized = URI.open(url).read
-  cocktail = JSON.parse(cocktail_serialized)["drinks"][0]
-  Cocktail.create!(
-    name: cocktail["strDrink"],
-    instructions: cocktail["strInstructionsIT"],
-    photo_url: cocktail["strDrinkThumb"]
+  url = "https://pokeapi.co/api/v2/pokemon/#{rand(1..1400)}"
+  puts url
+  pokemon_json_data = URI.open(url).read
+  pokemon_data = JSON.parse(pokemon_json_data)
+  # The following are the same:
+  # poke = Pokemon.new
+  # poke.save
+  # OR
+  # poke = Pokemon.create
+  puts "Create #{pokemon_data["name"]}..."
+  Pokemon.create!(
+    name: pokemon_data["name"],
+    poke_type: pokemon_data["types"][0]["type"]["name"],
+    height: pokemon_data["height"],
+    image_url: pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
   )
-  # cocktail = Cocktail.new!(
-  #   name: cocktail["strDrink"],
-  #   instructions: cocktail["strInstructionsIT"],
-  #   photo_url: cocktail["strDrinkThumb"]
-  # )
-  # cocktail.save!
 end
-puts "Done"
+puts "Finished!"
+
