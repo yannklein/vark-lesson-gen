@@ -7,7 +7,7 @@ puts "Deleted!"
 
 puts "Create pokemons..."
 10.times do
-  url = "https://pokeapi.co/api/v2/pokemon/#{rand(1..1400)}"
+  url = "https://pokeapi.co/api/v2/pokemon/#{rand(1..100)}"
   puts url
   pokemon_json_data = URI.open(url).read
   pokemon_data = JSON.parse(pokemon_json_data)
