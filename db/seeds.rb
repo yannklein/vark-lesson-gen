@@ -1,28 +1,29 @@
-require "json"
-require "open-uri"
+require 'open-uri'
+require 'json'
 
-puts "Delete all the pokemons..."
+base_url = "https://pokeapi.co/api/v2/pokemon-form/"
+
+puts "Destroying pokemons..."
 Pokemon.destroy_all
-puts "Deleted!"
 
-puts "Create pokemons..."
+puts "Seeding 10 pokemons..."
 10.times do
-  url = "https://pokeapi.co/api/v2/pokemon/#{rand(1..100)}"
-  puts url
-  pokemon_json_data = URI.open(url).read
-  pokemon_data = JSON.parse(pokemon_json_data)
-  # The following are the same:
-  # poke = Pokemon.new
-  # poke.save
-  # OR
-  # poke = Pokemon.create
-  puts "Create #{pokemon_data["name"]}..."
-  Pokemon.create!(
-    name: pokemon_data["name"],
-    poke_type: pokemon_data["types"][0]["type"]["name"],
-    height: pokemon_data["height"],
-    image_url: pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
-  )
-end
-puts "Finished!"
+  random_url = "#{base_url}#{rand(1..1000)}"
+  poke_serialized = URI.open(random_url).read
+  poke_data = JSON.parse(poke_serialized)
 
+  poke = Pokemon.new(
+    name: poke_data["name"], 
+    image_url: poke_data["sprites"]["front_default"],
+    poke_type: poke_data["types"][0]["type"]["name"]
+  )
+  poke.save!
+  # CREATE = NEW + SAVE
+  # Pokemon.create!(
+  #   name: poke_data["name"], 
+  #   image_url: poke_data["sprites"]["front_default"],
+  #   poke_type: poke_data["types"][0]["type"]["name"]
+  # )
+  puts "Pokemon #{poke_data["name"]} as been created."
+end
+puts "Done!"

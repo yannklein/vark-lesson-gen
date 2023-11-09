@@ -4,24 +4,19 @@ require "sinatra/activerecord"
 require "pry-byebug"
 require "better_errors"
 require_relative "config/application"
-require_relative 'notion_test'
-
 
 # app.rb = Router + Controller
 
-# http://localhost:4567 /   --> root
+# http://localhost:4567/ (root)
 get "/" do
-  # get/set data from/to model
-  @pokemons = Pokemon.all
-  # display stuff on the view
+  @pokes = Pokemon.all
   erb :index
 end
 
-# http://localhost:4567 /yann
-get "/yann" do
-  "hi yann"
+# http://localhost:4567/about
+get "/about" do
+  "About Sinatra..."
 end
-
 
 
 
