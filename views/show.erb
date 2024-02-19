@@ -21,4 +21,11 @@
 
   <h2 class="text-center mt-5 mb-3">Speech version</h2>
   <audio controls src="/speech.mp3"></audio>
+
+  <h2 class="text-center mt-5 mb-3">Slides version</h2>
+  <ul class="list-group list-inline">
+    <% @lesson.slides.each do |slide| %>
+      <li class="list-group-item"><img height=200 src="<%= slide %>" alt=""></li>
+    <% end %>
+  </ul>
 </div>

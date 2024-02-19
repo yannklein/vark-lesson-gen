@@ -10,6 +10,7 @@ require_relative "config/application"
 require_relative 'generate_markdown'
 require_relative 'generate_transcript'
 require_relative 'generate_speech'
+require_relative 'generate_slides'
 
 get '/' do
   @lessons = Lesson.all
@@ -33,7 +34,9 @@ post '/lessons/:id' do
     @lesson.transcripts = generate_transcript(@lesson.content) 
     generate_speech(@lesson.transcripts)
   end
-  generate_slides()
+  @lesson.slides = @lesson.transcripts.map do |transcript|
+    generate_slides(transcript)
+  end
   @lesson.save
   redirect "/lessons/#{params[:id]}"
 end
