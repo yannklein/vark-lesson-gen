@@ -1,20 +1,12 @@
-<%# Embedded ruby that is displayed ( pe + tab) %>
-<%# Embedded ruby that is not displayed ( er + tab) %>
+<h1 class="title">Lesson generator for: <%= @lesson.name %></h1>
 
-<h1>Hello from the View</h1>
-<div class="container">
-  <div class="row">
-  <% @pokes.each do |poke| %>
-  <div class="col-4">
-    <div class="card">
-      <img class="card-img-top" src="<%= poke.image_url %>" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title"><%= poke.name %></h5>
-        <p class="card-text"><%= poke.poke_type %></p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <% end %>
-  </div>
+<h2>You lesson content</h2>
+<form action="/lessons/<%= @id %>" method="POST">
+  <textarea name="content" cols="100" rows="10" ><%= @lesson.content %></textarea>
+  <button>Update</button>
+</form>
+
+<h2>The text version</h2>
+<div>
+  <%= @lesson_markdown %>
 </div>

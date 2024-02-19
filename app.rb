@@ -5,17 +5,27 @@ require "pry-byebug"
 require "better_errors"
 require_relative "config/application"
 
-# app.rb = Router + Controller
+require_relative 'generate_markdown'
 
-# http://localhost:4567/ (root)
-get "/" do
-  @pokes = Pokemon.all
+get '/' do
+  'Go to http://127.0.0.1:4567/lessons/1'
+end
+
+get '/lessons/:id' do
+  @id = params[:id]
+  @lesson = Lesson.find(params[:id])
+  @lesson.content.gsub!('\n', "&#13;&#10;")
+  # Initializes a Markdown parser
+  @lesson_markdown = generate_markdown(@lesson.content)
   erb :index
 end
 
-# http://localhost:4567/about
-get "/about" do
-  "About Sinatra..."
+post '/lessons/:id' do
+  @lesson = Lesson.find(params[:id])
+  @lesson.content = params[:content].strip.gsub!("&#13;&#10;", '\n')
+  pry.binding
+  @lesson.save
+  redirect "/lessons/#{params[:id]}"
 end
 
 
