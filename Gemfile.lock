@@ -31,20 +31,31 @@ GEM
     connection_pool (2.4.1)
     daemons (1.4.1)
     debug_inspector (1.2.0)
+    dotenv (3.0.2)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    event_stream_parser (1.0.0)
     eventmachine (1.2.7)
     faker (3.2.3)
       i18n (>= 1.8.11, < 2)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.1.0)
+      net-http
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
     minitest (5.22.2)
     multi_json (1.15.0)
+    multipart-post (2.4.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     pg (1.5.5)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -58,6 +69,10 @@ GEM
       rack (~> 2.2, >= 2.2.4)
     redcarpet (3.6.0)
     rouge (4.2.0)
+    ruby-openai (6.3.1)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby2_keywords (0.0.5)
     sinatra (3.2.0)
       mustermann (~> 3.0)
@@ -81,6 +96,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
 
 PLATFORMS
   ruby
@@ -88,10 +104,12 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  dotenv
   faker
   pg
   pry-byebug
   redcarpet
+  ruby-openai
   sinatra
   sinatra-activerecord
   sinatra-contrib

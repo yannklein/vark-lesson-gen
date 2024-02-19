@@ -1,29 +1,28 @@
 require 'open-uri'
 require 'json'
 
-base_url = "https://pokeapi.co/api/v2/pokemon-form/"
+puts "Destroying lessons..."
+Lesson.destroy_all
 
-puts "Destroying pokemons..."
-Pokemon.destroy_all
+puts "Seeding 1 lessons..."
 
-puts "Seeding 10 pokemons..."
-10.times do
-  random_url = "#{base_url}#{rand(1..1000)}"
-  poke_serialized = URI.open(random_url).read
-  poke_data = JSON.parse(poke_serialized)
+lesson = Lesson.new(
+  name: "Introduction to Algebra", 
+  content: "# Introduction to Algebra
 
-  poke = Pokemon.new(
-    name: poke_data["name"], 
-    image_url: poke_data["sprites"]["front_default"],
-    poke_type: poke_data["types"][0]["type"]["name"]
-  )
-  poke.save!
-  # CREATE = NEW + SAVE
-  # Pokemon.create!(
-  #   name: poke_data["name"], 
-  #   image_url: poke_data["sprites"]["front_default"],
-  #   poke_type: poke_data["types"][0]["type"]["name"]
-  # )
-  puts "Pokemon #{poke_data["name"]} as been created."
-end
+## What is Algebra?
+
+Algebra is the part of mathematics that helps represent problems or situations in the form of mathematical expressions.  In algebra, we use numbers like 2, −7, 0.068 etc., which have a definite or fixed value. In algebra we use variables like x, y, and z along with numbers.
+
+## Signs used in algebra 
+
+Mathematical operations like multiplication (×), division (÷), addition (+), and subtraction (−) are used to form a meaningful mathematical expression.
+
+There are other signs and symbols that are also frequently used in algebra.
+
+equal to (=), not equal to (≠), less than (<), greater than (＞), less than equal to(≤), greater than equal to ( ≥).",
+  transcripts: []
+)
+lesson.save!
+
 puts "Done!"

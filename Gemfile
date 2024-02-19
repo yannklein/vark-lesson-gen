@@ -18,3 +18,5 @@ gem "ruby-openai"
 group :production do
   gem 'pg'
 end
+
+gem 'dotenv', groups: [:development, :test]
