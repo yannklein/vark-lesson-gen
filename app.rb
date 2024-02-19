@@ -15,15 +15,16 @@ get '/lessons/:id' do
   @id = params[:id]
   @lesson = Lesson.find(params[:id])
   @lesson.content.gsub!('\n', "&#13;&#10;")
-  # Initializes a Markdown parser
+
   @lesson_markdown = generate_markdown(@lesson.content)
+
+  @lesson_transcript = generate_transcript(@lesson.content)
   erb :index
 end
 
 post '/lessons/:id' do
   @lesson = Lesson.find(params[:id])
-  @lesson.content = params[:content].strip.gsub!("&#13;&#10;", '\n')
-  pry.binding
+  @lesson.content = params[:content]
   @lesson.save
   redirect "/lessons/#{params[:id]}"
 end
