@@ -33,7 +33,7 @@ post '/lessons/:id' do
     @lesson.transcripts = generate_transcript(@lesson.content) 
     generate_speech(@lesson.transcripts)
   end
-  
+  generate_slides()
   @lesson.save
   redirect "/lessons/#{params[:id]}"
 end

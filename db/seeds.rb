@@ -21,7 +21,8 @@ Mathematical operations like multiplication (×), division (÷), addition (+), a
 There are other signs and symbols that are also frequently used in algebra.
 
 equal to (=), not equal to (≠), less than (<), greater than (＞), less than equal to(≤), greater than equal to ( ≥).",
-  transcripts: []
+  transcripts: [],
+  slides: []
 )
 lesson.save!
 
