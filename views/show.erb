@@ -12,17 +12,18 @@
     <%= @lesson_markdown %>
   </div>
 
-  <h2 class="text-center mt-5 mb-3">Transcript version</h2>
+  <h2 class="text-center mt-5 mb-3">Transcript + Speech version</h2>
   <ul class="list-group">
-    <% @lesson.transcripts.each do |paragraph| %>
+    <% @lesson.transcripts.each_with_index do |paragraph, index| %>
       <li class="list-group-item"><%= paragraph %></li>
+      <audio controls src="/speech<%= index %>.mp3"></audio>
     <% end %>
   </ul>
 
   <h2 class="text-center mt-5 mb-3">Speech version</h2>
-  <audio controls src="/speech.mp3"></audio>
 
   <h2 class="text-center mt-5 mb-3">Slides version</h2>
+  <a class="btn btn-primary" href="/lessons/<%= @lesson.id %>/slides"> Slides here</a>
   <ul class="list-group list-inline">
     <% @lesson.slides.each do |slide| %>
       <li class="list-group-item"><img height=200 src="<%= slide %>" alt=""></li>

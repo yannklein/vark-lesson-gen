@@ -1,6 +1,6 @@
 require 'openai'
 
-def generate_speech(transcripts)
+def generate_speech(transcript, index)
   OpenAI.configure do |config|
     config.access_token = ENV["OPENAI_API_KEY"]
   end
@@ -9,9 +9,9 @@ def generate_speech(transcripts)
   response = client.audio.speech(
     parameters: {
       model: "tts-1",
-      input: transcripts.join(" - "),
+      input: transcript,
       voice: "alloy"
     }
   )
-  File.binwrite('public/speech.mp3', response)
+  File.binwrite("public/speech#{index}.mp3", response)
 end

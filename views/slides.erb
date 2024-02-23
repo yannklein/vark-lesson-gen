@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.min.css">
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/+esm'
+  import RevealMarkdown from 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.esm.js';
+  let deck = new Reveal({
+    plugins: [ RevealMarkdown ]
+  })
+  deck.initialize();
+</script>
+
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown>
+      <textarea data-template>
+        <%= @lesson.content %>
+      </textarea>
+    </section>
+  </div>
+</div>

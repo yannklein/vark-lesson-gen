@@ -20,10 +20,17 @@ end
 get '/lessons/:id' do
   @id = params[:id]
   @lesson = Lesson.find(params[:id])
-  @lesson.content.gsub!('\n', "&#13;&#10;")
+  @lesson.content
   @lesson_markdown = generate_markdown(@lesson.content)
 
   erb :show
+end
+
+get '/lessons/:id/slides' do
+  @id = params[:id]
+  @lesson = Lesson.find(params[:id])
+  # byebug
+  erb :slides
 end
 
 post '/lessons/:id' do
@@ -31,37 +38,14 @@ post '/lessons/:id' do
   same_content = @lesson.content == params[:content]
   @lesson.content = params[:content]
   if @lesson.transcripts.empty? || !same_content
-    @lesson.transcripts = generate_transcript(@lesson.content) 
-    generate_speech(@lesson.transcripts)
+    @lesson.transcripts = generate_transcript(@lesson.content)
+    @lesson.transcripts.each_with_index do |transcript, index|
+      generate_speech(transcript, index)
+    end
   end
-  @lesson.slides = @lesson.transcripts.map do |transcript|
-    generate_slides(transcript)
-  end
+  # @lesson.slides = @lesson.transcripts.map do |transcript|
+  #   generate_slides(transcript)
+  # end
   @lesson.save
   redirect "/lessons/#{params[:id]}"
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-get '/notion' do
-  @title = init_notion
-  erb :notion_test
 end
